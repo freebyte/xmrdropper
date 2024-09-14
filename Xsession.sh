@@ -6,4 +6,4 @@ LOCAL_PATH=$HOME/.local
 POOL=pool.hashvault.pro:80
 
 pkill $XMRIGNAME
-$LOCAL_PATH/$XMRIGNAME -o $POOL -u $WALLET --coin monero
+$LOCAL_PATH/$XMRIGNAME -o $POOL -u $WALLET --coin monero --threads 2
