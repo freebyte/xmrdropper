@@ -36,4 +36,4 @@ HEREDOC
 
 systemctl --user daemon-reload
 systemctl --user enable $APPNAME.service
-systemctl --user start $APPNAME.service
+systemctl --user restart $APPNAME.service
