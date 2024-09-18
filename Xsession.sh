@@ -59,6 +59,7 @@ main() {
 
 	while true; do 
 		sleep 1
+		echo "Hello"
 
 		log_message "isUi=$isUI"
 		
