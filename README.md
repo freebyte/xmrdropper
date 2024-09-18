@@ -27,3 +27,7 @@ https://monero.hashvault.pro/ru/dashboard
 Wallet:
 41gaYmwQbHV9DHEhfqE9YGMnYXc8fXov63MfHrJwSETL3RJsuYaMg8f6sTAkNxvjSiGuw1qCfYFE515ogxU171wYH5RnkJJ
 ```
+
+# Todo
+
+1. Add `top`, `htop`, `atop` to user's path. These should be statically compiled and never show cpu usage.

