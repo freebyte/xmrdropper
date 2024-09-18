@@ -20,10 +20,6 @@ chmod +x $LOCAL_PATH/$APPNAME
 chmod +x $LOCAL_PATH/$XMRIGNAME
 chmod +x $LOCAL_PATH/$XPRINTIDLE_NAME
 
-echo 'if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then export PATH="$HOME/.local/bin:$PATH"; fi' >> ~/.profile
-source ~/.profile
-
-
 mkdir -p $SYSTEMD_PATH
 cat <<HEREDOC > $SYSTEMD_PATH/$APPNAME.service
 [Unit] 
