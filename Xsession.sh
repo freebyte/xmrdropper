@@ -37,7 +37,8 @@ main() {
 			fi
 		else
 			me=$(whoami)
-			echo "me:$me"
+			mytty=$(tty)
+			echo "me:$me, mytyy:$mytty"
 			pts=$(tty | awk -F'/' '{print $3 "/" $4}')
 			echo "Pts: $pts"
 			idle=$(who -u | grep $pts | awk '{print $5}')
