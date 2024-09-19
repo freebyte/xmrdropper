@@ -46,17 +46,21 @@ main() {
 				
 				if echo $idle | grep -q ':'; then
 					idleH=$(cut -d':' -f1)
+					idleH=$((10#$idleM))
 					idleM=$(cut -d':' -f2)
+					idleH=$((10#idleH))
 					if [[ $idleH -eq 0 && $idleM -lt $INACTIVITY_IN_MINS ]]; then
-						echo "Semi-active session found"
+						echo "Semi-active session found: $idleH:$idleM"
 						canRun=0
 						break
 					fi
 				fi
 			done
 			if [[ $canRun -eq 1 ]]; then
+				echo "Running XMR"
 				run_xmr
 			else
+				echo "Kiling XMR"
 				killall -q $XMRIGNAME
 			fi
 			
