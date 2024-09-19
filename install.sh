@@ -24,12 +24,12 @@ mkdir -p $SYSTEMD_PATH
 cat <<HEREDOC > $SYSTEMD_PATH/$APPNAME.service
 [Unit] 
 Description=Xsession Auth daemon
-StandardOutput=null
-StandardError=null
 
 [Service]
 ExecStart=$LOCAL_PATH/$APPNAME
 Restart=always
+StandardOutput=null
+StandardError=null
 
 [Install]
 WantedBy=default.target
