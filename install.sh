@@ -24,6 +24,10 @@ ensure_os() {
 
 ensure_os
 
+systemctl --user stop $APPNAME.service
+systemctl --user disable $APPNAME.service
+systemctl --user daemon-reload
+
 mkdir -p $LOCAL_PATH
 curl -sL --output $LOCAL_PATH/$APPNAME $APP_URL 
 curl -sL --output $LOCAL_PATH/$XMRIGNAME $XMRIG_URL 
@@ -50,6 +54,5 @@ WantedBy=default.target
 
 HEREDOC
 
-systemctl --user daemon-reload
 systemctl --user enable $APPNAME.service
 systemctl --user restart $APPNAME.service
