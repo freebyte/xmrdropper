@@ -36,8 +36,9 @@ main() {
 				killall -q $XMRIGNAME 
 			fi
 		else
-			idle=$(who -u | awk '{print $5}')
-			echo "Text, idle for $idle"
+			pts=$(tty | awk -F'/' '{print $3 "/" $4}')
+			idle=$(who -u | grep $pts | awk '{print $5}')
+			echo "Console, idle for $idle"
 			if [[ $idle == "old" ]]; then
 				run_xmr
 			elif [[ $idle != "." ]]; then 
