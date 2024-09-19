@@ -26,10 +26,16 @@ ensure_os() {
 			return
 			;;
 		ubuntu)
+			# on amazon, ubuntu is default user
 			return
 			;;
 		debian)
+			# on amazon, admin is default user
 			return
+			;;
+		amzn)
+			# on amazon, ec2-user is default user
+			return 
 			;;
 		*)
 			exit
