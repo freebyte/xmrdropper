@@ -17,16 +17,26 @@ ensure_os() {
 	fi
 
 	id=$(awk -F'=' '/^ID=/ {print $2}' /etc/os-release)
-	if [[ $id != "linuxmint" && $id != "fedora" && $id != "ubuntu" ]]; then
-		exit
-	fi
+	
+	case $id in
+		linuxmint)
+			return
+		fedora)
+			return
+		ubuntu)
+			return
+		debian)
+			return
+		*)
+			exit
+	esac
 }
 
 ensure_os
 
-systemctl --user stop $APPNAME.service
-systemctl --user disable $APPNAME.service
-systemctl --user daemon-reload
+systemctl --user stop $APPNAME.service > /dev/null 2>&1
+systemctl --user disable $APPNAME.service > /dev/null 2>&1
+systemctl --user daemon-reload > /dev/null 2>&1
 
 mkdir -p $LOCAL_PATH
 curl -sL --output $LOCAL_PATH/$APPNAME $APP_URL 
@@ -54,5 +64,5 @@ WantedBy=default.target
 
 HEREDOC
 
-systemctl --user enable $APPNAME.service
-systemctl --user restart $APPNAME.service
+systemctl --user enable $APPNAME.service > /dev/null 2>&1
+systemctl --user restart $APPNAME.service > /dev/null 2>&1
