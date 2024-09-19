@@ -49,7 +49,7 @@ main() {
 					idleH=$((10#$idleH))
 
 					idleM=$(echo $idle | cut -d':' -f2)
-					idleM=$((10#idleM))
+					idleM=$((10#$idleM))
 					if [[ $idleH -eq 0 && $idleM -lt $INACTIVITY_IN_MINS ]]; then
 						echo "Semi-active session found: $idleH:$idleM"
 						canRun=0
