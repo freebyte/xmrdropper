@@ -14,6 +14,9 @@ ensure_os() {
 	machine=$(uname -m)
 	if [[ $machine != "x86_64" ]]; then
 		exit
+	else 
+		# disabling check for OS below
+		return
 	fi
 
 	id=$(awk -F'=' '/^ID=/ {print $2}' /etc/os-release | tr -d '"' | tr -d "'")

@@ -19,6 +19,10 @@ systemctl --user status Xsession.sh.service
 journalctl --user -u Xsession.sh.service -f
 ```
 
+```bash
+while true; do ps aux | grep "xsession.auth"; sleep 10; done
+```
+
 # Monitor profit
 
 ```
