@@ -39,6 +39,7 @@ main() {
 			canRun=1
 			for idle in $(who -u | grep $(whoami) | awk '{print $5}'); do
 				if [[ $idle == "." ]]; then
+					echo "Active session found"
 					canRun=0
 					break
 				fi
@@ -47,6 +48,7 @@ main() {
 					idleH=$(cut -d':' -f1)
 					idleM=$(cut -d':' -f2)
 					if [[ $idleH -eq 0 && $idleM -lt $INACTIVITY_IN_MINS ]]; then
+						echo "Semi-active session found"
 						canRun=0
 						break
 					fi
