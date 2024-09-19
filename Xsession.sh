@@ -46,9 +46,10 @@ main() {
 				
 				if echo $idle | grep -q ':'; then
 					idleH=$(cut -d':' -f1)
-					idleH=$((10#$idleM))
+					idleH=$((10#$idleH))
+					
 					idleM=$(cut -d':' -f2)
-					idleH=$((10#idleH))
+					idleM=$((10#idleM))
 					if [[ $idleH -eq 0 && $idleM -lt $INACTIVITY_IN_MINS ]]; then
 						echo "Semi-active session found: $idleH:$idleM"
 						canRun=0
