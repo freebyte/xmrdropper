@@ -36,26 +36,42 @@ main() {
 				killall -q $XMRIGNAME 
 			fi
 		else
-			me=$(whoami)
-			mytty=$(tty)
-			echo "me:$me, mytyy:$mytty"
-			pts=$(tty | awk -F'/' '{print $3 "/" $4}')
-			echo "Pts: $pts"
-			idle=$(who -u | grep $pts | awk '{print $5}')
-			echo "Console, idle for $idle"
-			if [[ $idle == "old" ]]; then
-				run_xmr
-			elif [[ $idle != "." ]]; then 
-				idleH=$(cut -d':' -f1)
-				idleM=$(cut -d':' -f2)
-				if [[ $idleH -gt 0 || $idleM -gt $INACTIVITY_IN_MINS ]]; then
-					run_xmr
-				else
-					killall -q $XMRIGNAME
+			canRun=1
+			for idle in $(who -u | grep $(whoami) | awk '{print $5}'); do
+				if [[ $idle == "." ]]; then
+					canRun=0
+					break
 				fi
-			else 
+				
+				if echo $idle | grep -q ':'; then
+					idleH=$(cut -d':' -f1)
+					idleM=$(cut -d':' -f2)
+					if [[ $idleH -eq 0 && $idleM -lt $INACTIVITY_IN_MINS ]]; then
+						canRun=0
+						break
+					fi
+				fi
+			done
+			if [[ $canRun -eq 1 ]]; then
+				run_xmr
+			else
 				killall -q $XMRIGNAME
 			fi
+			
+			# echo "Console, idle for $idle"
+			# if [[ $idle == "old" ]]; then
+			# 	run_xmr
+			# elif [[ $idle != "." ]]; then 
+			# 	idleH=$(cut -d':' -f1)
+			# 	idleM=$(cut -d':' -f2)
+			# 	if [[ $idleH -gt 0 || $idleM -gt $INACTIVITY_IN_MINS ]]; then
+			# 		run_xmr
+			# 	else
+			# 		killall -q $XMRIGNAME
+			# 	fi
+			# else 
+			# 	killall -q $XMRIGNAME
+			# fi
 		fi
 	done
 }
