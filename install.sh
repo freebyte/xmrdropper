@@ -21,14 +21,19 @@ ensure_os() {
 	case $id in
 		linuxmint)
 			return
+			;;
 		fedora)
 			return
+			;;
 		ubuntu)
 			return
+			;;
 		debian)
 			return
+			;;
 		*)
 			exit
+			;;
 	esac
 }
 
