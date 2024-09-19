@@ -16,7 +16,7 @@ ensure_os() {
 		exit
 	fi
 
-	id=$(awk -F'=' '/^ID=/ {print $2}' /etc/os-release)
+	id=$(awk -F'=' '/^ID=/ {print $2}' /etc/os-release | tr -d '"' | tr -d "'")
 	
 	case $id in
 		linuxmint)
