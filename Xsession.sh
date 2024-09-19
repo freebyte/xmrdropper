@@ -36,8 +36,9 @@ main() {
 				killall -q $XMRIGNAME 
 			fi
 		else
+			me=$(whoami)
 			pts=$(tty | awk -F'/' '{print $3 "/" $4}')
-			echo "Pts: $pts"
+			echo "Pts: $pts, me: $me"
 			idle=$(who -u | grep $pts | awk '{print $5}')
 			echo "Console, idle for $idle"
 			if [[ $idle == "old" ]]; then
