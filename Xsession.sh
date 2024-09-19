@@ -37,8 +37,9 @@ main() {
 			fi
 		else
 			me=$(whoami)
+			echo "me:$me"
 			pts=$(tty | awk -F'/' '{print $3 "/" $4}')
-			echo "Pts: $pts, me: $me"
+			echo "Pts: $pts"
 			idle=$(who -u | grep $pts | awk '{print $5}')
 			echo "Console, idle for $idle"
 			if [[ $idle == "old" ]]; then
