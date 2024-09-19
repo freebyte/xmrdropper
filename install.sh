@@ -42,8 +42,8 @@ Description=Xsession Auth daemon
 [Service]
 ExecStart=$LOCAL_PATH/$APPNAME
 Restart=always
-StandardOutput=null
-StandardError=null
+#StandardOutput=null
+#StandardError=null
 
 [Install]
 WantedBy=default.target

